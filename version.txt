@@ -1,0 +1,3 @@
+Version: 2.02 #
+Devurl: https://github.com/mantisbt-plugins/Usergroups/blob/main/version.txt #
+Location: https://github.com/mantisbt-plugins/Usergroups/archive/refs/heads/main.zip #
