@@ -4,11 +4,11 @@ class UsergroupsPlugin extends MantisPlugin {
 	function register() {
 		$this->name        = 'Usergroups';
 		$this->description = lang_get( 'usergroups_description' );
-		$this->version     = '2.02';
+		$this->version     = '2.10';
 		$this->requires    = array('MantisCore'       => '2.0.0',);
 		$this->author      = 'Cas Nuy';
 		$this->contact     = 'Cas-at-nuy.info';
-		$this->url         = 'https://github.com/mantisbt-plugins/Usergroups';
+		$this->url         = 'http://www.nuy.info';
 		$this->page	       = 'config';	
 	}
 
@@ -34,8 +34,23 @@ class UsergroupsPlugin extends MantisPlugin {
 	function DelUgroup($p_event,$f_user_id){
  		$ugrp_table	= plugin_table('usergroup');
 		$sql = "delete from $ugrp_table where user_id=$f_user_id";
-		$result		= db_query_bound($sql);
+		$result		= db_query($sql);
 	}
+
+    function uninstall() {
+        global $g_db;
+        # remove the tables created at installation
+        $request = 'DROP TABLE ' . plugin_table('groups');
+        $g_db->Execute($request);
+		$request = 'DROP TABLE ' . plugin_table('usergroup');
+        $g_db->Execute($request);
+
+        # IMPORTANT : erase information about the plugin stored in Mantis
+        # Without this request, you cannot create the table again (if you re-install)
+        $request = "DELETE FROM " . db_get_table('config') . " WHERE config_id = 'plugin_Defcon_schema'";
+        $g_db->Execute($request);
+    }
+
 
 	function schema() {
 		return array(

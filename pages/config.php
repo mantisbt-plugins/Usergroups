@@ -2,12 +2,10 @@
 ########################################################
 # Mantis Bugtracker Plugin Usergroups
 #
-# By Cas Nuy  www.nuy.info 2010
-# To be used with Mantis 1.20 and above
+# By Cas Nuy  www.nuy.info 2023
+# To be used with Mantis 2.x
 #
 ########################################################
-# what is the table for tasks
-$grp_table	= plugin_table('groups');
 layout_page_header( '');
 layout_page_begin( 'config_page.php' );
 print_manage_menu();
@@ -67,21 +65,21 @@ echo lang_get( 'allgroups' );
 
 <?php
 # Pull all group-Record entries 
-$query = "SELECT * FROM $grp_table order by group_name";
-$result = db_query_bound($query);
+$query = "SELECT * FROM {plugin_Usergroups_groups} order by group_name";
+$result = db_query($query);
 while ($row = db_fetch_array($result)) {
 	?>
-	<tr <?php echo helper_alternate_class() ?>>
+	<tr >
 	<td><div align="center">
 
-	<a href="javascript: void(0)" onclick="window.open('plugins/Usergroups/pages/ugrp_show.php?edit_id=<?php echo $row["group_id"]; ?>', 'GroupEdit2', 'width=900, height=300,toolbar=0,location=0'); return false;"><?php echo $row['group_name'] ?></a><br>
+	<a href="plugin.php?page=Usergroups/ugrp_show.php&edit_id=<?php echo $row["group_id"]; ?>"><?php echo $row['group_name']?></a>
 	</td>
 	<td><div align="center"><?php  echo $row["group_desc"]; ?></td>
 	<td><div align="center"><?php  echo $row["group_mail"]; ?></td>
 	<td><div align="center">
-	<a href="plugins/Usergroups/pages/ugrp_delete.php?delete_id=<?php echo $row["group_id"]; ?>"><?php echo lang_get( 'groupdelete' ) ?></a>
+	<a href="plugin.php?page=Usergroups/ugrp_delete.php&delete_id=<?php echo $row["group_id"]; ?>"><?php echo lang_get( 'groupdelete' ) ?></a>
 	<===> 
-	<a href="javascript: void(0)" onclick="window.open('plugins/Usergroups/pages/ugrp_edit.php?edit_id=<?php echo $row["group_id"]; ?>', 'GroupEdit', 'width=500, height=200,toolbar=0,location=0'); return false;"><?php echo lang_get( 'groupedit' ) ?></a><br>
+	<a href="plugin.php?page=Usergroups/ugrp_edit.php&edit_id=<?php echo $row["group_id"]; ?>"><?php echo lang_get( 'groupedit' ) ?></a><br>
 	</td>
 	</tr>
 	<?php
@@ -93,7 +91,7 @@ while ($row = db_fetch_array($result)) {
 <tr>
 <td class="center" colspan="2">
 <form name="config2" action="<?php echo plugin_page( 'config_edit' ) ?>" method="post">
-<tr <?php echo helper_alternate_class() ?>>
+<tr >
 <td class="category">
 <?php echo lang_get( 'mailtogroup' ) ?>
 </td>

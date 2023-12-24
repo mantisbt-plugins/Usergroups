@@ -1,9 +1,9 @@
 ########################################################
 # 	Mantis Bugtracker Add-On
-# 	Usergroups Version 2.02
-#	2017 plugin by Cas Nuy www.NUY.info
+# 	Usergroups Version 2.10
+#	2023 plugin by Cas Nuy www.NUY.info
 #
-#   To be used only with Tasks plugin 3.01 and above !!! 
+#   To be used only with Mantis 2.x & Tasks plugin 3.01 and above !!! 
 #
 ########################################################
 
@@ -22,7 +22,7 @@ Do ensure to define a signal in manage_user_edit_page.php.
 Add the following line :
 	event_signal( 'EVENT_MANAGE_USER_FORM'); 
 Just before :
-	include ( 'account_prefs_inc.php' );
+	layout_page_end();
 
 Also ensure to define a signal in manage_user_delete.php.
 Add the following line :
@@ -34,7 +34,7 @@ Finally ensure to define a signal in account_delete.php.
 Add the following line :
 	event_signal( 'EVENT_ACCOUNT_DELETED', $f_user_id ); 
 Just before :
-	html_page_top1();
+	layout_page_header();
 
 	
 The rest is like any other plugin. 
@@ -42,7 +42,7 @@ After copying to your webserver :
 - Start mantis ad administrator
 - Select manage
 - Select manage Plugins
-- Select Install behind Usergroups 1.00
+- Select Install behind Usergroups 2.10
 - Once installed, click on the plugin-name for further configuration, ie creation of groups.
 
 Now configure the Tasks plugin to work with Groups.
@@ -50,13 +50,15 @@ Now configure the Tasks plugin to work with Groups.
 - Select manage Plugins
 - Click on the Tasks plugin and adjust setting to use groups and not users.
 
-Update to 1.01
-ALTER TABLE `mantis_plugin_usergroups_groups_table` ADD `group_mail` CHAR( 50 ) NOT NULL 
-
 ********************************************************************************************
 License                                                                                    *
 ********************************************************************************************
 This plugin is distributed under the same conditions as Mantis itself.
+
+********************************************************************************************
+Support                                                                                   *
+********************************************************************************************
+https://github.com/mantisbt-plugins/usergroups
 
 ********************************************************************************************
 Greetings                                                                                  *

@@ -1,22 +1,47 @@
 <?PHP
-require_once( '../../../core.php' );
+########################################################
+# Mantis Bugtracker Plugin Usergroups
+#
+# By Cas Nuy  www.nuy.info 2023
+# To be used with Mantis 2.x
+#
+########################################################
 require_once( config_get( 'plugin_path' ) . 'Usergroups' . DIRECTORY_SEPARATOR . 'Usergroups_api.php' );  
 $reqVar = '_' . $_SERVER['REQUEST_METHOD'];
 $form_vars = $$reqVar;
 $edit_id = $form_vars['edit_id'] ;
-$grp_table	= plugin_table('groups','Usergroups');
-$basepad=config_get('path');
 // get current values
-$query = "SELECT * FROM $grp_table WHERE group_id = $edit_id ";
-$result = db_query_bound($query);
+$query = "SELECT * FROM {plugin_Usergroups_groups} WHERE group_id = $edit_id ";
+$result = db_query($query);
 $row = db_fetch_array( $result );
 $name=$row['group_name'];
+layout_page_header( '');
+layout_page_begin( 'config_page.php' );
+print_manage_menu();
 ?>
-<form method="post" action="manage_usergroup_addmembers.php">
+<div class="col-md-12 col-xs-12">
+<div class="space-10"></div>
+<div class="form-container" > 
+<br/>
+<div class="widget-box widget-color-blue2">
+<div class="widget-header widget-header-small">
+	<h4 class="widget-title lighter">
+		<i class="ace-icon fa fa-text-width"></i>
+		<?php echo  'Usergroups : ' . lang_get( 'addmembers' )?>
+	</h4>
+</div>
+<div class="widget-body">
+<div class="widget-main no-padding">
+<div class="table-responsive"> 
+<table class="table table-bordered table-condensed table-striped"> 
+<tr>
+<td class="center" colspan="6">
+<br>
+<form method="post" action="plugin.php?page=Usergroups/manage_usergroup_addmembers.php">
 <?php echo form_security_field( 'manage_user_group_addmembers' ) ?>
 <input type="hidden" name="group_id" value="<?php echo $edit_id ?>" />
 <table align="center" class="width50" cellspacing="1">
-<tr <?php echo helper_alternate_class() ?> valign="top">
+<tr valign="top">
 <td class="category">
 <?php echo $name ?>
 </td></tr>
