@@ -8,8 +8,7 @@ $query= "select * from {plugin_Usergroups_groups} where upper(trim(group_name))=
 $result = db_query($query);
 $res2=db_num_rows($result);
 if ($res2 == 0){
-	$param = [$name, $desc, $mail];
-	$query = "INSERT INTO {plugin_Usergroups_groups} ( group_name,group_desc,group_mail ) VALUES ( " . db_param() . ", " . db_param() . ", " . db_param() . ")";
+	$query = "INSERT INTO {plugin_Usergroups_groups} ( group_name,group_desc,group_mail ) VALUES ( '$name', '$desc', '$mail')";
 	if(!db_query($query)){ 
 		trigger_error( ERROR_USERGROUP_EXISTS, ERROR );
 	}
