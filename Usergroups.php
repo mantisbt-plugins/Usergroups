@@ -4,7 +4,7 @@ class UsergroupsPlugin extends MantisPlugin {
 	function register() {
 		$this->name        = 'Usergroups';
 		$this->description = lang_get( 'usergroups_description' );
-		$this->version     = '2.11';
+		$this->version     = '2.12';
 		$this->requires    = array('MantisCore'       => '2.0.0',);
 		$this->author      = 'Cas Nuy';
 		$this->contact     = 'Cas-at-nuy.info';
