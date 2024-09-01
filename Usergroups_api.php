@@ -33,7 +33,7 @@ function print_group_user_list( $p_user_id, $p_include_remove_link = true ) {
 		$t_group_desc = string_attribute( $row['group_desc'] );
 		if( $p_include_remove_link && access_has_global_level( config_get( 'manage_user_threshold' ) )) {
 			?>
-			<a href="plugin.php?page=sergroups/manage_usergroup_delete.php&group_id=<?php echo $t_group_id; ?>&user_id=<?php echo $p_user_id ?>"><?php echo lang_get( 'groupdelete' ) ?></a>
+			<a href="plugin.php?page=Usergroups/manage_usergroup_delete.php&group_id=<?php echo $t_group_id; ?>&user_id=<?php echo $p_user_id ?>"><?php echo lang_get( 'groupdelete' ) ?></a>
 			<?php
 			echo $t_group_name;
 			echo " / ";
